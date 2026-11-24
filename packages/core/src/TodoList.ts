@@ -1,4 +1,4 @@
-import type { Todo } from "./types";
+import type { AddResult, Todo } from "./types";
 
 export type Listener = () => void;
 
@@ -24,6 +24,16 @@ export class TodoList {
 
   list(): readonly Todo[] {
     return this.#snapshot;
+  }
+
+  /**
+   * Appends a new todo that is not done. Title validation and trimming are
+   * added by User Story 2, so the title is stored as received for now.
+   */
+  add(title: string): AddResult {
+    const todo: Todo = { id: this.#takeId(), title, done: false };
+    this.#commit([...this.#snapshot, todo]);
+    return { ok: true, todo };
   }
 
   /** Replaces the snapshot and notifies listeners once. */
