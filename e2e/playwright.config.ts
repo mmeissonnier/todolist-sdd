@@ -11,6 +11,7 @@ export default defineConfig({
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 1 : 0,
   reporter: "list",
+  expect: { timeout: 5_000 },
   use: { baseURL, trace: "on-first-retry" },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: externalBaseURL
