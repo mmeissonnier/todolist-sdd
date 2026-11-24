@@ -3,3 +3,8 @@ dist/
 .DS_Store
 .claude/settings.local.json
 .specify/extensions/.cache/
+coverage/
+test-results/
+playwright-report/
+*.log
+.env*

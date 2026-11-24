@@ -78,8 +78,8 @@ packages/
     ├── tsconfig.json
     ├── src/
     │   ├── index.ts         # public exports
-    │   ├── todo.ts          # Todo type
-    │   └── todo-list.ts     # TodoList class
+    │   ├── types.ts         # All type definitions for the TodoList
+    │   └── TodoList.ts      # TodoList class
     └── tests/
         └── todo-list.test.ts
 

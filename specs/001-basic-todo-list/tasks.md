@@ -31,12 +31,12 @@ description: "Task list for the basic todo list feature"
 
 **Purpose**: Create the pnpm monorepo from scratch, per the plan's Project Structure
 
-- [ ] T001 Create `pnpm-workspace.yaml` (packages: `apps/*`, `packages/*`, `e2e`) and `tsconfig.base.json` at the repository root
-- [ ] T002 [P] Scaffold `packages/core`: `package.json` (name `@todolist/core`, `exports` pointing to `src/index.ts`, Vitest dev dependency, `test` script, no runtime dependency), `tsconfig.json`, empty `src/index.ts`
-- [ ] T003 [P] Scaffold `apps/react`: `package.json` (name `@todolist/react`, React 19, Vite 8, `@vitejs/plugin-react`, `@todolist/core` as `workspace:*`), `index.html`, `vite.config.ts`, `tsconfig.json`, minimal `src/main.tsx`
-- [ ] T004 [P] Scaffold `e2e`: `package.json` (name `@todolist/e2e`, `@playwright/test`, `test` script), `tsconfig.json`, `playwright.config.ts` reading the base URL from `E2E_BASE_URL` and starting `@todolist/react` when it is unset (see research.md R6)
-- [ ] T005 Add root scripts to `package.json`: `test` (core unit tests), `dev` (React app), `e2e`, `typecheck`
-- [ ] T006 Run `pnpm install` and `pnpm exec playwright install chromium`, then run `pnpm -r exec tsc --noEmit`. If TypeScript 7 is not supported by a tool, downgrade to 5.x and record it in `specs/001-basic-todo-list/research.md` (R7)
+- [X] T001 Create `pnpm-workspace.yaml` (packages: `apps/*`, `packages/*`, `e2e`) and `tsconfig.base.json` at the repository root
+- [X] T002 [P] Scaffold `packages/core`: `package.json` (name `@todolist/core`, `exports` pointing to `src/index.ts`, Vitest dev dependency, `test` script, no runtime dependency), `tsconfig.json`, empty `src/index.ts`
+- [X] T003 [P] Scaffold `apps/react`: `package.json` (name `@todolist/react`, React 19, Vite 8, `@vitejs/plugin-react`, `@todolist/core` as `workspace:*`), `index.html`, `vite.config.ts`, `tsconfig.json`, minimal `src/main.tsx`
+- [X] T004 [P] Scaffold `e2e`: `package.json` (name `@todolist/e2e`, `@playwright/test`, `test` script), `tsconfig.json`, `playwright.config.ts` reading the base URL from `E2E_BASE_URL` and starting `@todolist/react` when it is unset (see research.md R6)
+- [X] T005 Add root scripts to `package.json`: `test` (core unit tests), `dev` (React app), `e2e`, `typecheck`
+- [X] T006 Run `pnpm install` and `pnpm exec playwright install chromium`, then run `pnpm -r exec tsc --noEmit`. If TypeScript 7 is not supported by a tool, downgrade to 5.x and record it in `specs/001-basic-todo-list/research.md` (R7)
 
 ---
 
@@ -46,12 +46,12 @@ description: "Task list for the basic todo list feature"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T007 [P] Write failing tests in `packages/core/tests/snapshot.test.ts`: a new `TodoList` has an empty snapshot, `getSnapshot()` returns the same reference on repeated calls, `list()` equals `getSnapshot()`, two instances have independent state (contracts/core-api.md, "Snapshot stability" and "Independence")
-- [ ] T008 Run `pnpm --filter @todolist/core test` and confirm the T007 tests fail
-- [ ] T009 [P] Define the `Todo` and `AddResult` types in `packages/core/src/todo.ts` per contracts/core-api.md and `data-model.md` `Todo.id`, `Todo.title`, `Todo.done`
-- [ ] T010 Implement the `TodoList` skeleton in `packages/core/src/todo-list.ts` (state, listener set, `subscribe` returning an unsubscribe function, `getSnapshot`, `list`, internal notify method, id counter per research.md R4) and export it from `packages/core/src/index.ts`; the T007 tests pass
-- [ ] T011 [P] Create the single `TodoList` instance and a `useTodos` hook built on `useSyncExternalStore` in `apps/react/src/todo-store.ts`
-- [ ] T012 [P] Create the app shell in `apps/react/src/App.tsx` (page heading only) and mount it from `apps/react/src/main.tsx`; confirm `pnpm --filter @todolist/react dev` serves the page
+- [X] T007 [P] Write failing tests in `packages/core/tests/snapshot.test.ts`: a new `TodoList` has an empty snapshot, `getSnapshot()` returns the same reference on repeated calls, `list()` equals `getSnapshot()` (contracts/core-api.md, "Snapshot stability"); instance independence is tested in T013 because it needs a state change
+- [X] T008 Run `pnpm --filter @todolist/core test` and confirm the T007 tests fail
+- [X] T009 [P] Define the `Todo` and `AddResult` types in `packages/core/src/types.ts` per contracts/core-api.md and `data-model.md` `Todo.id`, `Todo.title`, `Todo.done`
+- [X] T010 Implement the `TodoList` skeleton in `packages/core/src/TodoList.ts` (state, listener set, `subscribe` returning an unsubscribe function, `getSnapshot`, `list`, internal notify method, id counter per research.md R4) and export it from `packages/core/src/index.ts`; the T007 tests pass
+- [X] T011 [P] Create the single `TodoList` instance and a `useTodos` hook built on `useSyncExternalStore` in `apps/react/src/todo-store.ts`
+- [X] T012 [P] Create the app shell in `apps/react/src/App.tsx` (page heading only) and mount it from `apps/react/src/main.tsx`; confirm `pnpm --filter @todolist/react dev` serves the page
 
 **Checkpoint**: Foundation ready, user story implementation can begin
 
@@ -67,13 +67,13 @@ description: "Task list for the basic todo list feature"
 
 > **Write these tests FIRST and ensure they FAIL before implementation**
 
-- [ ] T013 [P] [US1] Write failing tests in `packages/core/tests/add.test.ts`: add appends a todo with the given title and `done` false (`data-model.md` `Todo.done`), ids are unique even for equal titles (`data-model.md` `Todo.id`), insertion order is kept, one notification per add, snapshot reference changes, and after the function returned by `subscribe` is called the listener is no longer notified (contracts/core-api.md, "Unsubscribe")
+- [ ] T013 [P] [US1] Write failing tests in `packages/core/tests/add.test.ts`: add appends a todo with the given title and `done` false (`data-model.md` `Todo.done`), ids are unique even for equal titles (`data-model.md` `Todo.id`), insertion order is kept, one notification per add, snapshot reference changes, two instances keep independent state and listeners (contracts/core-api.md, "Independence"), and after the function returned by `subscribe` is called the listener is no longer notified (contracts/core-api.md, "Unsubscribe")
 - [ ] T014 [P] [US1] Write failing e2e scenarios in `e2e/tests/add-and-list.spec.ts` for the User Story 1 acceptance scenarios (initial empty state, add one todo, add a second after the first, input cleared), locating elements as in contracts/ui-contract.md
 - [ ] T015 [US1] Run `pnpm --filter @todolist/core test` and `pnpm --filter @todolist/e2e test` and confirm the T013 and T014 tests fail
 
 ### Implementation for User Story 1
 
-- [ ] T016 [US1] Implement `add` in `packages/core/src/todo-list.ts`: assign `id` from the counter (`data-model.md` `Todo.id`), start with `done` false (`data-model.md` `Todo.done`), append, create a new snapshot, notify once, return `{ ok: true, todo }`. Title validation and trimming (`data-model.md` `Todo.title`) are deliberately left to T025 in User Story 2, so until then the title is stored as received
+- [ ] T016 [US1] Implement `add` in `packages/core/src/TodoList.ts`: assign `id` from the counter (`data-model.md` `Todo.id`), start with `done` false (`data-model.md` `Todo.done`), append, create a new snapshot, notify once, return `{ ok: true, todo }`. Title validation and trimming (`data-model.md` `Todo.title`) are deliberately left to T025 in User Story 2, so until then the title is stored as received
 - [ ] T017 [P] [US1] Create `apps/react/src/components/TodoItem.tsx` rendering a todo's title inside a list item
 - [ ] T018 [US1] Create `apps/react/src/components/TodoListView.tsx` rendering the `Todos` list from the `useTodos` snapshot, and the `No todos yet` status when it is empty (depends on T017)
 - [ ] T019 [P] [US1] Create `apps/react/src/components/TodoForm.tsx` with the `New todo title` input and the `Add` button; on submit it calls `add` and clears the input on success
@@ -98,7 +98,7 @@ description: "Task list for the basic todo list feature"
 
 ### Implementation for User Story 2
 
-- [ ] T025 [US2] Add title validation and trimming to `add` in `packages/core/src/todo-list.ts` per `data-model.md` `Todo.title`, returning `{ ok: false, error: "EMPTY_TITLE" }` without changing state or notifying
+- [ ] T025 [US2] Add title validation and trimming to `add` in `packages/core/src/TodoList.ts` per `data-model.md` `Todo.title`, returning `{ ok: false, error: "EMPTY_TITLE" }` without changing state or notifying
 - [ ] T026 [US2] Update `apps/react/src/components/TodoForm.tsx` to show the `A title is required` alert on a rejected add, keep the input unchanged, and hide the alert after the next successful add
 - [ ] T027 [US2] Run core unit tests and the e2e suite; the T022 and T023 tests pass and the User Story 1 tests still pass
 
@@ -120,7 +120,7 @@ description: "Task list for the basic todo list feature"
 
 ### Implementation for User Story 3
 
-- [ ] T031 [US3] Implement `toggle` in `packages/core/src/todo-list.ts`: replace the matching todo with a copy whose `done` is flipped (`data-model.md` `Todo.done`), create a new snapshot, notify once; do nothing for an unknown id
+- [ ] T031 [US3] Implement `toggle` in `packages/core/src/TodoList.ts`: replace the matching todo with a copy whose `done` is flipped (`data-model.md` `Todo.done`), create a new snapshot, notify once; do nothing for an unknown id
 - [ ] T032 [US3] Update `apps/react/src/components/TodoItem.tsx` with a checkbox named by the todo title that calls `toggle`, and add a visual style for done todos in `apps/react/src/index.css` (imported from `apps/react/src/main.tsx`)
 - [ ] T033 [US3] Run core unit tests and the e2e suite; the T028 and T029 tests pass and earlier stories still pass
 
@@ -142,7 +142,7 @@ description: "Task list for the basic todo list feature"
 
 ### Implementation for User Story 4
 
-- [ ] T037 [US4] Implement `remove` in `packages/core/src/todo-list.ts`: build a new snapshot without the matching todo (`data-model.md` `Todo.id`), notify once; do nothing for an unknown id
+- [ ] T037 [US4] Implement `remove` in `packages/core/src/TodoList.ts`: build a new snapshot without the matching todo (`data-model.md` `Todo.id`), notify once; do nothing for an unknown id
 - [ ] T038 [US4] Update `apps/react/src/components/TodoItem.tsx` with a `Delete <title>` button that calls `remove`
 - [ ] T039 [US4] Run core unit tests and the e2e suite; the T034 and T035 tests pass and earlier stories still pass
 
@@ -174,10 +174,10 @@ description: "Task list for the basic todo list feature"
 
 - **US1 (P1)**: starts after Foundational, no other dependency
 - **US2 (P2)**: builds on `add` and `TodoForm` from US1 (same files)
-- **US3 (P2)**: needs a todo to exist (US1); touches `todo-list.ts` and `TodoItem.tsx`
-- **US4 (P3)**: needs a todo to exist (US1); touches `todo-list.ts` and `TodoItem.tsx`
+- **US3 (P2)**: needs a todo to exist (US1); touches `TodoList.ts` and `TodoItem.tsx`
+- **US4 (P3)**: needs a todo to exist (US1); touches `TodoList.ts` and `TodoItem.tsx`
 
-The stories share `packages/core/src/todo-list.ts` and the React components, so the implementation tasks run sequentially in priority order. Only the test-writing tasks are independent across stories.
+The stories share `packages/core/src/TodoList.ts` and the React components, so the implementation tasks run sequentially in priority order. Only the test-writing tasks are independent across stories.
 
 ### Within Each User Story
 

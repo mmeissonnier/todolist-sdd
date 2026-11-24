@@ -3,6 +3,10 @@
   "private": true,
   "packageManager": "pnpm@12.11.2",
   "scripts": {
+    "dev": "pnpm --filter @todolist/react dev",
+    "test": "pnpm --filter @todolist/core test",
+    "e2e": "pnpm --filter @todolist/e2e test",
+    "typecheck": "pnpm -r typecheck",
     "speckit:update": "./scripts/speckit-update.sh",
     "speckit:models": "./scripts/speckit-models.sh"
   }
