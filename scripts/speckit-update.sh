@@ -11,7 +11,7 @@ trap 'rm -rf "$BACKUP"' EXIT
 cp -R .specify/memory "$BACKUP/memory"
 
 uvx --from git+https://github.com/github/spec-kit.git specify init \
-  --here --force --integration claude --non-interactive
+  --here --force --integration claude --extension git --non-interactive
 
 rm -rf .specify/memory
 cp -R "$BACKUP/memory" .specify/memory
