@@ -1,50 +1,77 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# TodoList Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Framework-Agnostic Specifications
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+`spec.md` MUST describe observable behavior only. It MUST NOT mention any framework, library,
+or tool (React, Vue, Angular, Svelte, Solid, etc.). Technology choices belong in `plan.md`.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+Rationale: one spec is reused by every framework implementation. Naming a framework in the
+spec would make it unusable for the others.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### II. Shared Core
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+All business logic (Todo model, rules, storage) MUST live in `packages/core` as pure
+TypeScript. `packages/core` MUST NOT depend on any UI framework. Every app MUST reuse it and
+MUST NOT reimplement business logic.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Rationale: behavior stays identical across implementations, and each app is reduced to a UI
+layer.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### III. Monorepo Layout
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+The repository MUST be a pnpm workspace. Each framework implementation MUST live in its own
+`apps/<framework>` directory. Shared code MUST live in `packages/*`. Apps MUST NOT import from
+one another.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Rationale: a predictable layout lets a new framework be added without touching the others.
+
+### IV. Test-Driven Development (NON-NEGOTIABLE)
+
+Red-Green-Refactor MUST be followed strictly: tests MUST be written first and MUST be
+observed failing before any implementation code is written. Unit tests for `packages/core`
+MUST use Vitest. A single Playwright end-to-end suite MUST run against every app, since all
+apps share the same behavior.
+
+Rationale: the shared e2e suite proves that every implementation matches the same spec.
+
+### V. Front-End Only and Simplicity
+
+The project MUST have no backend. Persistence MUST use `localStorage`. Features and
+abstractions not required by a current spec MUST NOT be added (YAGNI).
+
+Rationale: the project is deliberately small so that the comparison between frameworks stays
+the focus.
+
+## Technical Constraints
+
+- Language: TypeScript for all code, including `packages/core`.
+- Package manager: pnpm (workspaces).
+- Unit tests: Vitest. End-to-end tests: Playwright.
+- First implementation: React in `apps/react`. Vue, Angular, Svelte and Solid MAY follow in
+  `apps/<framework>`.
+- All Spec Kit documents (constitution, specs, plans, tasks) MUST be written in English.
+
+## Development Workflow
+
+- Work follows the Spec Kit cycle: specify, plan, tasks, implement.
+- Each feature MUST have a spec before any plan, and a plan before any task list.
+- Each plan MUST include a Constitution Check and MUST NOT proceed while a violation is
+  unjustified.
+- Each task list MUST place test tasks before the implementation tasks they cover.
+- A new framework implementation MUST reuse the existing `spec.md` and produce its own plan.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other practices. Amendments MUST be made by editing this
+file, with the version bumped according to semantic versioning:
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+- MAJOR: a principle is removed or redefined in a backward-incompatible way.
+- MINOR: a principle or section is added, or guidance is materially expanded.
+- PATCH: wording clarifications and typo fixes.
+
+Every plan and review MUST verify compliance with these principles. Any deviation MUST be
+justified in writing in the plan's Complexity Tracking section.
+
+**Version**: 1.0.0 | **Ratified**: 2026-11-24 | **Last Amended**: 2026-11-24
