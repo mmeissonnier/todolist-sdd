@@ -67,20 +67,20 @@ description: "Task list for the basic todo list feature"
 
 > **Write these tests FIRST and ensure they FAIL before implementation**
 
-- [ ] T013 [P] [US1] Write failing tests in `packages/core/tests/add.test.ts`: add appends a todo with the given title and `done` false (`data-model.md` `Todo.done`), ids are unique even for equal titles (`data-model.md` `Todo.id`), insertion order is kept, one notification per add, snapshot reference changes
+- [ ] T013 [P] [US1] Write failing tests in `packages/core/tests/add.test.ts`: add appends a todo with the given title and `done` false (`data-model.md` `Todo.done`), ids are unique even for equal titles (`data-model.md` `Todo.id`), insertion order is kept, one notification per add, snapshot reference changes, and after the function returned by `subscribe` is called the listener is no longer notified (contracts/core-api.md, "Unsubscribe")
 - [ ] T014 [P] [US1] Write failing e2e scenarios in `e2e/tests/add-and-list.spec.ts` for the User Story 1 acceptance scenarios (initial empty state, add one todo, add a second after the first, input cleared), locating elements as in contracts/ui-contract.md
 - [ ] T015 [US1] Run `pnpm --filter @todolist/core test` and `pnpm --filter @todolist/e2e test` and confirm the T013 and T014 tests fail
 
 ### Implementation for User Story 1
 
-- [ ] T016 [US1] Implement `add` in `packages/core/src/todo-list.ts`: assign `id` from the counter (`data-model.md` `Todo.id`), start with `done` false (`data-model.md` `Todo.done`), append, create a new snapshot, notify once, return `{ ok: true, todo }`
+- [ ] T016 [US1] Implement `add` in `packages/core/src/todo-list.ts`: assign `id` from the counter (`data-model.md` `Todo.id`), start with `done` false (`data-model.md` `Todo.done`), append, create a new snapshot, notify once, return `{ ok: true, todo }`. Title validation and trimming (`data-model.md` `Todo.title`) are deliberately left to T025 in User Story 2, so until then the title is stored as received
 - [ ] T017 [P] [US1] Create `apps/react/src/components/TodoItem.tsx` rendering a todo's title inside a list item
 - [ ] T018 [US1] Create `apps/react/src/components/TodoListView.tsx` rendering the `Todos` list from the `useTodos` snapshot, and the `No todos yet` status when it is empty (depends on T017)
 - [ ] T019 [P] [US1] Create `apps/react/src/components/TodoForm.tsx` with the `New todo title` input and the `Add` button; on submit it calls `add` and clears the input on success
 - [ ] T020 [US1] Compose `TodoForm` and `TodoListView` in `apps/react/src/App.tsx` (depends on T018, T019)
 - [ ] T021 [US1] Run core unit tests and the e2e suite; the T013 and T014 tests pass
 
-**Checkpoint**: User Story 1 is fully functional and testable on its own (MVP)
+**Checkpoint**: User Story 1 is fully functional and testable on its own (MVP). Known limit at this checkpoint: empty and whitespace-only titles are still accepted, because validation (FR-004, FR-005) is delivered by User Story 2. Do not ship the MVP without it
 
 ---
 
@@ -136,7 +136,7 @@ description: "Task list for the basic todo list feature"
 
 ### Tests for User Story 4 ⚠️
 
-- [ ] T034 [P] [US4] Write failing tests in `packages/core/tests/remove.test.ts`: removing deletes only the matching todo and keeps the order of the others, removing a done todo works the same way, removing the last todo gives an empty snapshot, one notification per removal, an unknown id changes nothing and notifies nobody
+- [ ] T034 [P] [US4] Write failing tests in `packages/core/tests/remove.test.ts`: removing deletes only the matching todo and keeps the order of the others, removing a done todo works the same way, removing the last todo gives an empty snapshot, one notification per removal, an unknown id changes nothing and notifies nobody; plus a sequence test where a mix of add, toggle and remove calls ends with exactly the todos added and not removed, each with its latest done state (spec SC-005)
 - [ ] T035 [P] [US4] Write failing e2e scenarios in `e2e/tests/delete-todo.spec.ts`: delete one of several todos, delete a done todo, delete the last todo and see `No todos yet`
 - [ ] T036 [US4] Run core and e2e tests and confirm the T034 and T035 tests fail
 
