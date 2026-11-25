@@ -51,6 +51,15 @@ export class TodoList {
     );
   }
 
+  /**
+   * Removes the todo with the given id, keeping the order of the others. An
+   * unknown id changes nothing and notifies nobody.
+   */
+  remove(id: string): void {
+    if (!this.#snapshot.some((todo) => todo.id === id)) return;
+    this.#commit(this.#snapshot.filter((todo) => todo.id !== id));
+  }
+
   /** Replaces the snapshot and notifies listeners once. */
   #commit(next: readonly Todo[]): void {
     this.#snapshot = next;
