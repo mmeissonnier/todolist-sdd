@@ -92,15 +92,15 @@ description: "Task list for the basic todo list feature"
 
 ### Tests for User Story 2 ⚠️
 
-- [ ] T022 [P] [US2] Write failing tests in `packages/core/tests/validation.test.ts`: empty, spaces-only, tab-only and line-break-only titles return `{ ok: false, error: "EMPTY_TITLE" }`, leave the snapshot reference unchanged and trigger no notification; `"  Buy milk  "` is stored as `"Buy milk"` (`data-model.md` `Todo.title`)
-- [ ] T023 [P] [US2] Write failing e2e scenarios in `e2e/tests/reject-invalid-title.spec.ts`: empty title and spaces-only title show the alert and leave the list unchanged; the alert disappears after the next successful add; a title with surrounding spaces appears trimmed
-- [ ] T024 [US2] Run core and e2e tests and confirm the T022 and T023 tests fail
+- [X] T022 [P] [US2] Write failing tests in `packages/core/tests/validation.test.ts`: empty, spaces-only, tab-only and line-break-only titles return `{ ok: false, error: "EMPTY_TITLE" }`, leave the snapshot reference unchanged and trigger no notification; `"  Buy milk  "` is stored as `"Buy milk"` (`data-model.md` `Todo.title`)
+- [X] T023 [P] [US2] Write failing e2e scenarios in `e2e/tests/reject-invalid-title.spec.ts`: empty title and spaces-only title show the alert and leave the list unchanged; the alert disappears after the next successful add; a title with surrounding spaces appears trimmed
+- [X] T024 [US2] Run core and e2e tests and confirm the T022 and T023 tests fail
 
 ### Implementation for User Story 2
 
-- [ ] T025 [US2] Add title validation and trimming to `add` in `packages/core/src/TodoList.ts` per `data-model.md` `Todo.title`, returning `{ ok: false, error: "EMPTY_TITLE" }` without changing state or notifying
-- [ ] T026 [US2] Update `apps/react/src/components/TodoForm.tsx` to show the `A title is required` alert on a rejected add, keep the input unchanged, and hide the alert after the next successful add
-- [ ] T027 [US2] Run core unit tests and the e2e suite; the T022 and T023 tests pass and the User Story 1 tests still pass
+- [X] T025 [US2] Add title validation and trimming to `add` in `packages/core/src/TodoList.ts` per `data-model.md` `Todo.title`, returning `{ ok: false, error: "EMPTY_TITLE" }` without changing state or notifying
+- [X] T026 [US2] Update `apps/react/src/components/TodoForm.tsx` to show the `A title is required` alert on a rejected add, keep the input unchanged, and hide the alert after the next successful add
+- [X] T027 [US2] Run core unit tests and the e2e suite; the T022 and T023 tests pass and the User Story 1 tests still pass
 
 **Checkpoint**: User Stories 1 and 2 both work
 
