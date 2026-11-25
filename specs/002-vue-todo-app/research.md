@@ -28,6 +28,10 @@ checked against the npm registry on 2026-11-25.
 - **Alternatives considered**: Options API (more verbose, no benefit); skipping type-check of
   `.vue` files (leaves the app unchecked). If `vue-tsc` fails on TypeScript 7, downgrade
   TypeScript to 5.x for this package only and record it here, as 001 R7 allows.
+- **Outcome (2026-11-25)**: `vue-tsc` 3.3.14 does not work with TypeScript 7 (its Volar
+  dependencies require `typescript <7`; `vue-tsc --noEmit` fails with
+  `ERR_PACKAGE_PATH_NOT_EXPORTED ./lib/tsc`). `apps/vue` therefore uses TypeScript 6.0.3, the
+  latest release below 7. The other packages stay on TypeScript 7.
 
 ## R3. No unit tests in `apps/vue`
 

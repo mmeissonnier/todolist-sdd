@@ -30,10 +30,10 @@ description: "Task list for the second todo list app (Vue)"
 
 **Purpose**: Add the `apps/vue` workspace member and the script that runs the shared suite against it
 
-- [ ] T001 Scaffold `apps/vue`: `package.json` (name `@todolist/vue`, scripts `dev`, `build`, `preview`, `typecheck` using `vue-tsc --noEmit`; dependencies `vue` and `@todolist/core` as `workspace:*`; dev dependencies `@vitejs/plugin-vue`, `vite`, `vue-tsc`, `typescript`, as in research.md R2), `index.html` (same as `apps/react/index.html`, script `/src/main.ts`), `vite.config.ts` (Vue plugin, `server: { port: 5174, strictPort: true }`), `tsconfig.json` (extends `../../tsconfig.base.json`, DOM libs, `types: ["vite/client"]`, includes `src/**/*.vue`), and a minimal `src/main.ts`
-- [ ] T002 [P] Create `scripts/e2e-vue.sh` per research.md R4: start `pnpm --filter @todolist/vue dev` in the background, wait until `http://localhost:5174` answers, run `pnpm --filter @todolist/e2e test` with `E2E_BASE_URL=http://localhost:5174`, stop the server on exit, failure or Ctrl-C (`trap`), and exit with the suite's exit code; make it executable
-- [ ] T003 Add the root script `"e2e:vue": "./scripts/e2e-vue.sh"` to `package.json` (depends on T002)
-- [ ] T004 Run `pnpm install`, then `pnpm -r typecheck`. If `vue-tsc` does not support TypeScript 7, downgrade TypeScript to 5.x in `apps/vue/package.json` only and record it in `specs/002-vue-todo-app/research.md` (R2)
+- [X] T001 Scaffold `apps/vue`: `package.json` (name `@todolist/vue`, scripts `dev`, `build`, `preview`, `typecheck` using `vue-tsc --noEmit`; dependencies `vue` and `@todolist/core` as `workspace:*`; dev dependencies `@vitejs/plugin-vue`, `vite`, `vue-tsc`, `typescript`, as in research.md R2), `index.html` (same as `apps/react/index.html`, script `/src/main.ts`), `vite.config.ts` (Vue plugin, `server: { port: 5174, strictPort: true }`), `tsconfig.json` (extends `../../tsconfig.base.json`, DOM libs, `types: ["vite/client"]`, includes `src/**/*.vue`), and a minimal `src/main.ts`
+- [X] T002 [P] Create `scripts/e2e-vue.sh` per research.md R4: start `pnpm --filter @todolist/vue dev` in the background, wait until `http://localhost:5174` answers, run `pnpm --filter @todolist/e2e test` with `E2E_BASE_URL=http://localhost:5174`, stop the server on exit, failure or Ctrl-C (`trap`), and exit with the suite's exit code; make it executable
+- [X] T003 Add the root script `"e2e:vue": "./scripts/e2e-vue.sh"` to `package.json` (depends on T002)
+- [X] T004 Run `pnpm install`, then `pnpm -r typecheck`. If `vue-tsc` does not support TypeScript 7, downgrade TypeScript to 5.x in `apps/vue/package.json` only and record it in `specs/002-vue-todo-app/research.md` (R2)
 
 ---
 
