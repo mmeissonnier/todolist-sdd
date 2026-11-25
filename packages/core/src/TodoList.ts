@@ -38,6 +38,19 @@ export class TodoList {
     return { ok: true, todo };
   }
 
+  /**
+   * Flips the done state of the todo with the given id. An unknown id changes
+   * nothing and notifies nobody.
+   */
+  toggle(id: string): void {
+    if (!this.#snapshot.some((todo) => todo.id === id)) return;
+    this.#commit(
+      this.#snapshot.map((todo) =>
+        todo.id === id ? { ...todo, done: !todo.done } : todo,
+      ),
+    );
+  }
+
   /** Replaces the snapshot and notifies listeners once. */
   #commit(next: readonly Todo[]): void {
     this.#snapshot = next;
