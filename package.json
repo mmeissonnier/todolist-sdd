@@ -6,6 +6,7 @@
     "dev": "pnpm --filter @todolist/react dev",
     "test": "pnpm --filter @todolist/core test",
     "e2e": "pnpm --filter @todolist/e2e test",
+    "e2e:vue": "./scripts/e2e-vue.sh",
     "typecheck": "pnpm -r typecheck",
     "speckit:update": "./scripts/speckit-update.sh",
     "speckit:models": "./scripts/speckit-models.sh"
