@@ -23,7 +23,7 @@ pnpm exec playwright install chromium   # first run only
 
 pnpm test        # core unit tests
 pnpm dev         # run the React app (port 5173)
-pnpm --filter @todolist/vue dev   # run the Vue app (port 5174)
+pnpm dev:vue     # run the Vue app (port 5174)
 pnpm e2e         # e2e tests (starts the React app itself)
 pnpm e2e:vue     # the same e2e tests against the Vue app (starts and stops it)
 pnpm typecheck   # type-check every package

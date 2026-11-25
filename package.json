@@ -4,6 +4,7 @@
   "packageManager": "pnpm@12.11.2",
   "scripts": {
     "dev": "pnpm --filter @todolist/react dev",
+    "dev:vue": "pnpm --filter @todolist/vue dev",
     "test": "pnpm --filter @todolist/core test",
     "e2e": "pnpm --filter @todolist/e2e test",
     "e2e:vue": "./scripts/e2e-vue.sh",
