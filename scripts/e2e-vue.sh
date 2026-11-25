@@ -11,10 +11,17 @@ URL="http://localhost:${PORT}"
 pnpm --filter @todolist/vue dev >/dev/null 2>&1 &
 SERVER_PID=$!
 
+# Vite is a grandchild of pnpm: stop the whole tree, children first.
+kill_tree() {
+  local child
+  for child in $(pgrep -P "$1" 2>/dev/null || true); do
+    kill_tree "$child"
+  done
+  kill "$1" 2>/dev/null || true
+}
+
 cleanup() {
-  # Vite runs as a child of pnpm: stop the whole group of processes.
-  pkill -P "$SERVER_PID" 2>/dev/null || true
-  kill "$SERVER_PID" 2>/dev/null || true
+  kill_tree "$SERVER_PID"
 }
 trap cleanup EXIT INT TERM
 
