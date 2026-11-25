@@ -114,15 +114,15 @@ description: "Task list for the basic todo list feature"
 
 ### Tests for User Story 3 ⚠️
 
-- [ ] T028 [P] [US3] Write failing tests in `packages/core/tests/toggle.test.ts`: toggling flips `done` and toggling again flips it back (`data-model.md` `Todo.done`), other todos keep their state, a previous snapshot is not modified, one notification per toggle, an unknown id changes nothing and notifies nobody
-- [ ] T029 [P] [US3] Write failing e2e scenarios in `e2e/tests/toggle-done.spec.ts`: mark done (checkbox checked, position kept), mark not done again, other todos unaffected
-- [ ] T030 [US3] Run core and e2e tests and confirm the T028 and T029 tests fail
+- [X] T028 [P] [US3] Write failing tests in `packages/core/tests/toggle.test.ts`: toggling flips `done` and toggling again flips it back (`data-model.md` `Todo.done`), other todos keep their state, a previous snapshot is not modified, one notification per toggle, an unknown id changes nothing and notifies nobody
+- [X] T029 [P] [US3] Write failing e2e scenarios in `e2e/tests/toggle-done.spec.ts`: mark done (checkbox checked, position kept), mark not done again, other todos unaffected
+- [X] T030 [US3] Run core and e2e tests and confirm the T028 and T029 tests fail
 
 ### Implementation for User Story 3
 
-- [ ] T031 [US3] Implement `toggle` in `packages/core/src/TodoList.ts`: replace the matching todo with a copy whose `done` is flipped (`data-model.md` `Todo.done`), create a new snapshot, notify once; do nothing for an unknown id
-- [ ] T032 [US3] Update `apps/react/src/components/TodoItem.tsx` with a checkbox named by the todo title that calls `toggle`, and add a visual style for done todos in `apps/react/src/index.css` (imported from `apps/react/src/main.tsx`)
-- [ ] T033 [US3] Run core unit tests and the e2e suite; the T028 and T029 tests pass and earlier stories still pass
+- [X] T031 [US3] Implement `toggle` in `packages/core/src/TodoList.ts`: replace the matching todo with a copy whose `done` is flipped (`data-model.md` `Todo.done`), create a new snapshot, notify once; do nothing for an unknown id
+- [X] T032 [US3] Update `apps/react/src/components/TodoItem.tsx` with a checkbox named by the todo title that calls `toggle`, and add a visual style for done todos in `apps/react/src/index.css` (imported from `apps/react/src/main.tsx`)
+- [X] T033 [US3] Run core unit tests and the e2e suite; the T028 and T029 tests pass and earlier stories still pass
 
 **Checkpoint**: User Stories 1 to 3 work
 
