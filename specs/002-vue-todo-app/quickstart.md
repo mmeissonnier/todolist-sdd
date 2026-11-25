@@ -13,7 +13,7 @@ pnpm exec playwright install chromium   # first run only
 ## 1. Run the Vue app
 
 ```bash
-pnpm --filter @todolist/vue dev
+pnpm dev:vue
 ```
 
 Expected: the app opens at `http://localhost:5174` with an empty list and the message

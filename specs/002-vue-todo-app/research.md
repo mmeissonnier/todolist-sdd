@@ -44,7 +44,8 @@ checked against the npm registry on 2026-11-25.
 
 ## R4. Running the shared suite against the Vue app
 
-- **Decision**: A root script `"e2e:vue": "./scripts/e2e-vue.sh"`. The shell script starts
+- **Decision**: A root script `"dev:vue": "pnpm --filter @todolist/vue dev"`, next to the
+  existing `dev` for React, and a root script `"e2e:vue": "./scripts/e2e-vue.sh"`. The shell script starts
   `pnpm --filter @todolist/vue dev` in the background (port 5174, `strictPort`), waits until
   `http://localhost:5174` answers, runs `pnpm --filter @todolist/e2e test` with
   `E2E_BASE_URL=http://localhost:5174`, then stops the server (also on failure or Ctrl-C,

@@ -10,7 +10,8 @@ Add `apps/vue`, a Vue 3 + Vite app with the same behavior as `apps/react`. Same 
 feature 001: the app holds one `TodoList` from `@todolist/core` as global state and only
 renders it. The one framework-specific piece is a `useTodos` composable that turns the core's
 `subscribe` / `getSnapshot` into a Vue ref. The shared Playwright suite in `e2e/` runs
-unchanged, through a new root script `e2e:vue`. Nothing in `apps/react`, `packages/core` or
+unchanged, through a new root script `e2e:vue`. A root script `dev:vue` starts the app, next to the
+existing `dev` for React. Nothing in `apps/react`, `packages/core` or
 `e2e/` changes.
 
 ## Reuse from feature 001 (not copied here)
@@ -91,7 +92,7 @@ apps/
 scripts/
 └── e2e-vue.sh                   # new: start the Vue app, run the shared suite against it, stop it
 
-package.json                     # root: add the "e2e:vue" script
+package.json                     # root: add the "dev:vue" and "e2e:vue" scripts
 ```
 
 Unchanged: `apps/react`, `packages/core`, `e2e/` (including `playwright.config.ts`).
