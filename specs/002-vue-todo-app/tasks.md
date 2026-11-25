@@ -81,8 +81,8 @@ Markup follows `specs/001-basic-todo-list/contracts/ui-contract.md`; `apps/react
 
 **Purpose**: Document the second app and prove nothing else changed
 
-- [ ] T014 [P] Update the root `README.md`: add `apps/vue` to the layout table, `pnpm e2e:vue` to the commands, and point the "Adding a framework" steps at it as the second example
-- [ ] T015 Run the validation of `specs/002-vue-todo-app/quickstart.md`, including `git diff --stat main -- apps/react packages/core e2e` (it must list no file) and the manual check in the browser
+- [X] T014 [P] Update the root `README.md`: add `apps/vue` to the layout table, `pnpm e2e:vue` to the commands, and point the "Adding a framework" steps at it as the second example
+- [X] T015 Run the validation of `specs/002-vue-todo-app/quickstart.md`, including `git diff --stat main -- apps/react packages/core e2e` (it must list no file) and the manual check in the browser
 
 ---
 
