@@ -27,11 +27,13 @@ export class TodoList {
   }
 
   /**
-   * Appends a new todo that is not done. Title validation and trimming are
-   * added by User Story 2, so the title is stored as received for now.
+   * Appends a new todo that is not done. The title is trimmed; an empty or
+   * whitespace-only title is rejected without changing state or notifying.
    */
   add(title: string): AddResult {
-    const todo: Todo = { id: this.#takeId(), title, done: false };
+    const trimmed = title.trim();
+    if (trimmed === "") return { ok: false, error: "EMPTY_TITLE" };
+    const todo: Todo = { id: this.#takeId(), title: trimmed, done: false };
     this.#commit([...this.#snapshot, todo]);
     return { ok: true, todo };
   }
