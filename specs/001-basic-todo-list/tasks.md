@@ -154,10 +154,10 @@ description: "Task list for the basic todo list feature"
 
 **Purpose**: Guard the constitution and finish the feature
 
-- [ ] T040 [P] Add `packages/core/tests/purity.test.ts` asserting `packages/core/package.json` has no runtime dependency and no file in `packages/core/src/` imports anything but relative modules (constitution principle II)
-- [ ] T041 [P] Write the root `README.md`: what the project is, the commands from quickstart.md, and how to add a framework (create `apps/<framework>`, satisfy contracts/ui-contract.md, reuse `@todolist/core`, run the shared e2e suite with `E2E_BASE_URL`)
-- [ ] T042 Run `pnpm -r exec tsc --noEmit` and fix any type error in every package
-- [ ] T043 Run the full validation from `specs/001-basic-todo-list/quickstart.md`: unit tests, e2e tests started by the config, e2e tests against a running app with `E2E_BASE_URL`, and the manual check list
+- [X] T040 [P] Add `packages/core/tests/purity.test.ts` asserting `packages/core/package.json` has no runtime dependency and no file in `packages/core/src/` imports anything but relative modules (constitution principle II)
+- [X] T041 [P] Write the root `README.md`: what the project is, the commands from quickstart.md, and how to add a framework (create `apps/<framework>`, satisfy contracts/ui-contract.md, reuse `@todolist/core`, run the shared e2e suite with `E2E_BASE_URL`)
+- [X] T042 Run `pnpm -r exec tsc --noEmit` and fix any type error in every package
+- [X] T043 Run the full validation from `specs/001-basic-todo-list/quickstart.md`: unit tests, e2e tests started by the config, e2e tests against a running app with `E2E_BASE_URL`, and the manual check list
 
 ---
 
