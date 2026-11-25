@@ -1,3 +1,4 @@
-import { createApp, h } from "vue";
+import { createApp } from "vue";
+import App from "./App.vue";
 
-createApp({ render: () => h("main", [h("h1", "Todo list")]) }).mount("#root");
+createApp(App).mount("#root");

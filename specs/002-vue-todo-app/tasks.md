@@ -43,8 +43,8 @@ description: "Task list for the second todo list app (Vue)"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T005 [P] Create `apps/vue/src/todo-store.ts`: the single `TodoList` instance (exported as `todoList`) and the `useTodos()` composable per research.md R1 (`shallowRef` of `getSnapshot()`, `subscribe` when the component mounts, unsubscribe when it unmounts); no todo rule is defined here
-- [ ] T006 [P] Create the app shell `apps/vue/src/App.vue` (`main` with the heading `Todo list` only) and mount it from `apps/vue/src/main.ts`; confirm `pnpm --filter @todolist/vue dev` serves the page at `http://localhost:5174`
+- [X] T005 [P] Create `apps/vue/src/todo-store.ts`: the single `TodoList` instance (exported as `todoList`) and the `useTodos()` composable per research.md R1 (`shallowRef` of `getSnapshot()`, `subscribe` when the component mounts, unsubscribe when it unmounts); no todo rule is defined here
+- [X] T006 [P] Create the app shell `apps/vue/src/App.vue` (`main` with the heading `Todo list` only) and mount it from `apps/vue/src/main.ts`; confirm `pnpm --filter @todolist/vue dev` serves the page at `http://localhost:5174`
 
 **Checkpoint**: Foundation ready, the user story can begin
 
