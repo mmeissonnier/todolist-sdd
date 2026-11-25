@@ -60,18 +60,18 @@ description: "Task list for the second todo list app (Vue)"
 
 > **Run the shared suite and see it FAIL before writing any component**
 
-- [ ] T007 [US1] Run `pnpm e2e:vue` and confirm the scenarios fail (the page only has a heading). This also checks that `scripts/e2e-vue.sh` starts the app, runs the suite and stops the server
+- [X] T007 [US1] Run `pnpm e2e:vue` and confirm the scenarios fail (the page only has a heading). This also checks that `scripts/e2e-vue.sh` starts the app, runs the suite and stops the server
 
 ### Implementation for User Story 1
 
 Markup follows `specs/001-basic-todo-list/contracts/ui-contract.md`; `apps/react/src/components/` is the model to mirror (read only, do not import from it).
 
-- [ ] T008 [P] [US1] Create `apps/vue/src/components/TodoItem.vue`: a list item with a checkbox named by the todo title that calls `todoList.toggle`, a `Delete <title>` button that calls `todoList.remove`, and a `done` class when the todo is done
-- [ ] T009 [US1] Create `apps/vue/src/components/TodoListView.vue`: the `Todos` list built from `useTodos()` with one `TodoItem` per todo, and the `No todos yet` status instead of the list when it is empty (depends on T005, T008)
-- [ ] T010 [P] [US1] Create `apps/vue/src/components/TodoForm.vue`: the `New todo title` input and the `Add` button in a form; on submit it calls `todoList.add`, clears the input on success, and on `EMPTY_TITLE` keeps the input and shows the `A title is required` alert until the next successful add (depends on T005)
-- [ ] T011 [P] [US1] Create `apps/vue/src/index.css` with the style for done todos (same look as `apps/react/src/index.css`) and import it from `apps/vue/src/main.ts`
-- [ ] T012 [US1] Compose `TodoForm` and `TodoListView` in `apps/vue/src/App.vue` (depends on T009, T010)
-- [ ] T013 [US1] Run `pnpm e2e:vue`; every scenario passes with no change to `e2e/`. Then run `pnpm e2e` (React app), `pnpm test` and `pnpm typecheck`; all pass
+- [X] T008 [P] [US1] Create `apps/vue/src/components/TodoItem.vue`: a list item with a checkbox named by the todo title that calls `todoList.toggle`, a `Delete <title>` button that calls `todoList.remove`, and a `done` class when the todo is done
+- [X] T009 [US1] Create `apps/vue/src/components/TodoListView.vue`: the `Todos` list built from `useTodos()` with one `TodoItem` per todo, and the `No todos yet` status instead of the list when it is empty (depends on T005, T008)
+- [X] T010 [P] [US1] Create `apps/vue/src/components/TodoForm.vue`: the `New todo title` input and the `Add` button in a form; on submit it calls `todoList.add`, clears the input on success, and on `EMPTY_TITLE` keeps the input and shows the `A title is required` alert until the next successful add (depends on T005)
+- [X] T011 [P] [US1] Create `apps/vue/src/index.css` with the style for done todos (same look as `apps/react/src/index.css`) and import it from `apps/vue/src/main.ts`
+- [X] T012 [US1] Compose `TodoForm` and `TodoListView` in `apps/vue/src/App.vue` (depends on T009, T010)
+- [X] T013 [US1] Run `pnpm e2e:vue`; every scenario passes with no change to `e2e/`. Then run `pnpm e2e` (React app), `pnpm test` and `pnpm typecheck`; all pass
 
 **Checkpoint**: The Vue app is fully functional and testable on its own
 
