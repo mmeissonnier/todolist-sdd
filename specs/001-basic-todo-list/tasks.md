@@ -136,15 +136,15 @@ description: "Task list for the basic todo list feature"
 
 ### Tests for User Story 4 ⚠️
 
-- [ ] T034 [P] [US4] Write failing tests in `packages/core/tests/remove.test.ts`: removing deletes only the matching todo and keeps the order of the others, removing a done todo works the same way, removing the last todo gives an empty snapshot, one notification per removal, an unknown id changes nothing and notifies nobody; plus a sequence test where a mix of add, toggle and remove calls ends with exactly the todos added and not removed, each with its latest done state (spec SC-005)
-- [ ] T035 [P] [US4] Write failing e2e scenarios in `e2e/tests/delete-todo.spec.ts`: delete one of several todos, delete a done todo, delete the last todo and see `No todos yet`
-- [ ] T036 [US4] Run core and e2e tests and confirm the T034 and T035 tests fail
+- [X] T034 [P] [US4] Write failing tests in `packages/core/tests/remove.test.ts`: removing deletes only the matching todo and keeps the order of the others, removing a done todo works the same way, removing the last todo gives an empty snapshot, one notification per removal, an unknown id changes nothing and notifies nobody; plus a sequence test where a mix of add, toggle and remove calls ends with exactly the todos added and not removed, each with its latest done state (spec SC-005)
+- [X] T035 [P] [US4] Write failing e2e scenarios in `e2e/tests/delete-todo.spec.ts`: delete one of several todos, delete a done todo, delete the last todo and see `No todos yet`
+- [X] T036 [US4] Run core and e2e tests and confirm the T034 and T035 tests fail
 
 ### Implementation for User Story 4
 
-- [ ] T037 [US4] Implement `remove` in `packages/core/src/TodoList.ts`: build a new snapshot without the matching todo (`data-model.md` `Todo.id`), notify once; do nothing for an unknown id
-- [ ] T038 [US4] Update `apps/react/src/components/TodoItem.tsx` with a `Delete <title>` button that calls `remove`
-- [ ] T039 [US4] Run core unit tests and the e2e suite; the T034 and T035 tests pass and earlier stories still pass
+- [X] T037 [US4] Implement `remove` in `packages/core/src/TodoList.ts`: build a new snapshot without the matching todo (`data-model.md` `Todo.id`), notify once; do nothing for an unknown id
+- [X] T038 [US4] Update `apps/react/src/components/TodoItem.tsx` with a `Delete <title>` button that calls `remove`
+- [X] T039 [US4] Run core unit tests and the e2e suite; the T034 and T035 tests pass and earlier stories still pass
 
 **Checkpoint**: All four user stories work
 

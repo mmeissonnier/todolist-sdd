@@ -12,6 +12,9 @@ export function TodoItem({ todo }: { todo: Todo }) {
         />
         <span>{todo.title}</span>
       </label>
+      <button type="button" onClick={() => todoList.remove(todo.id)}>
+        Delete {todo.title}
+      </button>
     </li>
   );
 }
