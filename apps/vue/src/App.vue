@@ -4,8 +4,8 @@ import TodoListView from "./components/TodoListView.vue";
 </script>
 
 <template>
-  <main>
-    <h1>Todo list</h1>
+  <main class="app">
+    <h1 class="app-title">Todo list</h1>
     <TodoForm />
     <TodoListView />
   </main>

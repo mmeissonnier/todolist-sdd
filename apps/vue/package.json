@@ -11,7 +11,11 @@
   },
   "dependencies": {
     "@todolist/core": "workspace:*",
-    "vue": "^3.5.46"
+    "vue": "^3.5.46",
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "daisyui": "^5.0.0",
+    "@todolist/design-tokens": "workspace:*"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.11",

@@ -6,8 +6,8 @@ const todos = useTodos();
 </script>
 
 <template>
-  <p v-if="todos.length === 0" role="status">No todos yet</p>
-  <ul v-else aria-label="Todos">
+  <p v-if="todos.length === 0" role="status" class="todo-empty">No todos yet</p>
+  <ul v-else class="todo-list" aria-label="Todos">
     <TodoItem v-for="todo in todos" :key="todo.id" :todo="todo" />
   </ul>
 </template>
