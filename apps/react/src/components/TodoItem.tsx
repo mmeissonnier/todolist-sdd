@@ -1,7 +1,12 @@
 import type { Todo } from "@todolist/core";
-import { todoList } from "../todo-store";
 
-export function TodoItem({ todo }: { todo: Todo }) {
+interface TodoItemProps {
+  todo: Todo;
+  onToggle: () => void;
+  onRemove: () => void;
+}
+
+export function TodoItem({ todo, onToggle, onRemove }: TodoItemProps) {
   return (
     <li className={todo.done ? "todo done" : "todo"}>
       <label>
@@ -9,11 +14,11 @@ export function TodoItem({ todo }: { todo: Todo }) {
           className="todo-check"
           type="checkbox"
           checked={todo.done}
-          onChange={() => todoList.toggle(todo.id)}
+          onChange={onToggle}
         />
         <span className="todo-title">{todo.title}</span>
       </label>
-      <button type="button" className="todo-delete" onClick={() => todoList.remove(todo.id)}>
+      <button type="button" className="todo-delete" onClick={onRemove}>
         Delete {todo.title}
       </button>
     </li>

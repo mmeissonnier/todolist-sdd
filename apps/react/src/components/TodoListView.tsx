@@ -1,4 +1,4 @@
-import { useTodos } from "../todo-store";
+import { todoList, useTodos } from "../todo-store";
 import { TodoItem } from "./TodoItem";
 
 export function TodoListView() {
@@ -11,7 +11,12 @@ export function TodoListView() {
   return (
     <ul className="todo-list" aria-label="Todos">
       {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} />
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          onToggle={() => todoList.toggle(todo.id)}
+          onRemove={() => todoList.remove(todo.id)}
+        />
       ))}
     </ul>
   );
