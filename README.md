@@ -11,6 +11,7 @@ suite checks every app against the same UI contract. State is in memory only.
 | `packages/core` | `TodoList` class: add, toggle, remove, validation, `subscribe()` / `getSnapshot()` |
 | `apps/react` | React 19 + Vite app using the core through `useSyncExternalStore` |
 | `apps/vue` | Vue 3 + Vite app using the core through a `useTodos` composable |
+| `packages/design-tokens` | Shared styles (Tailwind v4 + DaisyUI): tokens, global rules, one file per component. See its [README](packages/design-tokens/README.md) |
 | `e2e` | Shared Playwright suite, run against any app |
 
 ## Commands
@@ -22,6 +23,7 @@ pnpm install
 pnpm exec playwright install chromium   # first run only
 
 pnpm test        # core unit tests
+pnpm test:styles # design-tokens checks (tokens, components, app wiring)
 pnpm dev         # run the React app (port 5173)
 pnpm dev:vue     # run the Vue app (port 5174)
 pnpm e2e         # e2e tests (starts the React app itself)
@@ -44,3 +46,5 @@ full validation guide.
 4. Give the app its own port, then start it and run the shared suite against it:
    `E2E_BASE_URL=<app url> pnpm e2e`. `apps/vue` is a worked example, with its script
    [`scripts/e2e-vue.sh`](scripts/e2e-vue.sh) to copy.
+5. Adopt the shared styles in three steps, described in the
+   [design-tokens README](packages/design-tokens/README.md#adopt-in-a-new-app).

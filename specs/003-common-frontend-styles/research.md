@@ -40,3 +40,9 @@
 
 - **Decision**: One step: add `@todolist/design-tokens` as a dependency, add the Tailwind Vite plugin, and `@import "@todolist/design-tokens/styles.css";` in the app's entry CSS.
 - **Rationale**: Satisfies FR-012 and SC-004.
+
+## 8. Implementation finding: `@apply` limits (found during T018/T020)
+
+- `@apply btn`, `@apply input` and `@apply btn-primary` resolve and render correctly.
+- `@apply checkbox checkbox-primary` does NOT: the checked mark (a `::before` rule) is dropped, so a checked box looks empty. The fallback above was applied to this one element: native checkbox with Tailwind `accent-primary` and `size-5` in `components/todo-item.css`.
+- Long delete labels (the visible text is "Delete <title>") are truncated with an ellipsis so they cannot squeeze the title; the full text stays the accessible name.
