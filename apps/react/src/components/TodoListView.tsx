@@ -5,11 +5,11 @@ export function TodoListView() {
   const todos = useTodos();
 
   if (todos.length === 0) {
-    return <p role="status">No todos yet</p>;
+    return <p role="status" className="todo-empty">No todos yet</p>;
   }
 
   return (
-    <ul aria-label="Todos">
+    <ul className="todo-list" aria-label="Todos">
       {todos.map((todo) => (
         <TodoItem key={todo.id} todo={todo} />
       ))}

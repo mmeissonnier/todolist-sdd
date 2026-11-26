@@ -17,15 +17,16 @@ export function TodoForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="todo-form" onSubmit={handleSubmit}>
       <input
+        className="todo-form-input"
         aria-label="New todo title"
         placeholder="What needs to be done?"
         value={title}
         onChange={(event) => setTitle(event.target.value)}
       />
-      <button type="submit">Add</button>
-      {rejected && <p role="alert">A title is required</p>}
+      <button type="submit" className="todo-form-submit">Add</button>
+      {rejected && <p role="alert" className="todo-form-error">A title is required</p>}
     </form>
   );
 }

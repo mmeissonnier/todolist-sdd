@@ -6,13 +6,14 @@ export function TodoItem({ todo }: { todo: Todo }) {
     <li className={todo.done ? "todo done" : "todo"}>
       <label>
         <input
+          className="todo-check"
           type="checkbox"
           checked={todo.done}
           onChange={() => todoList.toggle(todo.id)}
         />
-        <span>{todo.title}</span>
+        <span className="todo-title">{todo.title}</span>
       </label>
-      <button type="button" onClick={() => todoList.remove(todo.id)}>
+      <button type="button" className="todo-delete" onClick={() => todoList.remove(todo.id)}>
         Delete {todo.title}
       </button>
     </li>

@@ -3,8 +3,8 @@ import { TodoListView } from "./components/TodoListView";
 
 export function App() {
   return (
-    <main>
-      <h1>Todo list</h1>
+    <main className="app">
+      <h1 className="app-title">Todo list</h1>
       <TodoForm />
       <TodoListView />
     </main>
