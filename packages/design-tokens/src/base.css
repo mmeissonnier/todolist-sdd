@@ -1,0 +1,25 @@
+/* Global rules. Tokens only: no raw colors or sizes. */
+@layer base {
+  body {
+    @apply bg-base-200 font-sans text-base text-base-content antialiased;
+    margin: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+}
+
+.app {
+  @apply mx-auto flex w-full flex-col gap-4 p-4;
+  max-width: var(--container-app);
+}
+
+.app-title {
+  @apply text-2xl font-semibold;
+}

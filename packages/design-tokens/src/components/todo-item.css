@@ -1,0 +1,31 @@
+.todo {
+  @apply flex items-center justify-between gap-3 px-4 py-3 transition-colors hover:bg-base-200;
+}
+
+.todo label {
+  @apply flex min-w-0 flex-1 cursor-pointer items-center gap-3;
+}
+
+.todo-check {
+  @apply size-5 shrink-0 cursor-pointer accent-primary;
+}
+
+.todo-title {
+  @apply min-w-0 break-words;
+}
+
+.todo.done .todo-title {
+  @apply text-base-content/70 line-through;
+}
+
+.todo-delete {
+  @apply btn btn-ghost btn-sm max-w-40 shrink-0 justify-start text-error;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.todo:not(:last-child) {
+  border-bottom: 1px solid var(--color-base-300);
+}

@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@import "./tokens.css";
+@import "./base.css";
+@import "./components/todo-form.css";
+@import "./components/todo-list.css";
+@import "./components/todo-item.css";
+@import "./components/todo-empty.css";

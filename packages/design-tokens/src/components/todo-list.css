@@ -1,0 +1,3 @@
+.todo-list {
+  @apply m-0 list-none overflow-hidden rounded-box border border-base-300 bg-base-100 p-0;
+}

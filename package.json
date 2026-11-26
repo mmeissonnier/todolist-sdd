@@ -10,6 +10,7 @@
     "e2e:vue": "./scripts/e2e-vue.sh",
     "typecheck": "pnpm -r typecheck",
     "speckit:update": "./scripts/speckit-update.sh",
-    "speckit:models": "./scripts/speckit-models.sh"
+    "speckit:models": "./scripts/speckit-models.sh",
+    "test:styles": "pnpm --filter @todolist/design-tokens test"
   }
 }

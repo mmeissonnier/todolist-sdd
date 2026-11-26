@@ -1,0 +1,23 @@
+.todo-form {
+  @apply flex flex-wrap items-center gap-2;
+}
+
+.todo-form-input {
+  @apply input min-w-0 flex-1 bg-base-100;
+}
+
+.todo-form-input::placeholder {
+  @apply text-base-content/70;
+}
+
+.todo-form-submit {
+  @apply btn btn-primary transition-colors;
+}
+
+.todo-form-submit:disabled {
+  @apply btn-disabled;
+}
+
+.todo-form-error {
+  @apply basis-full text-sm text-error;
+}
