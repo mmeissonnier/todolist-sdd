@@ -44,6 +44,17 @@ abstractions not required by a current spec MUST NOT be added (YAGNI).
 Rationale: the project is deliberately small so that the comparison between frameworks stays
 the focus.
 
+### VI. Presentational Components
+
+In every app, a component that displays a todo (for example an item or a list row) MUST be
+presentational: it receives its data and its callbacks through props (React) or props and
+emitted events (Vue). Such a component MUST NOT import the shared store or call `packages/core`
+directly. The wiring from callbacks to the core MUST live in a parent component or in the
+app's state module.
+
+Rationale: a presentational component can be rendered and tested without the store, and the
+same wiring pattern carries over to every framework, which keeps implementations comparable.
+
 ## Technical Constraints
 
 - Language: TypeScript for all code, including `packages/core`.
@@ -74,4 +85,4 @@ file, with the version bumped according to semantic versioning:
 Every plan and review MUST verify compliance with these principles. Any deviation MUST be
 justified in writing in the plan's Complexity Tracking section.
 
-**Version**: 1.0.0 | **Ratified**: 2026-11-24 | **Last Amended**: 2026-11-24
+**Version**: 1.1.0 | **Ratified**: 2026-11-24 | **Last Amended**: 2026-11-27
